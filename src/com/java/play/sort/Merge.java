@@ -34,10 +34,10 @@ public class Merge {
             return  list;
         }
         if(leftList.size() > 1){
-            devideAndMerge(leftList);
+            leftList = devideAndMerge(leftList);
         }
         if(rightList.size() > 1){
-            devideAndMerge(rightList);
+            rightList = devideAndMerge(rightList);
         }
         int leftIndex = 0;
         int rightIndex = 0;
