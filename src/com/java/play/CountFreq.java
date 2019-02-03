@@ -35,67 +35,10 @@ public class CountFreq {
                     queries.add(query);
                 }
             }
-            List<Integer> ans = freqQuery_1(queries);
+            List<Integer> ans = freqQuery(queries);
             System.out.println(ans);
         }
     }
-
-    /*static List<Integer> freqQuery(List<List<Integer>> queries) {
-        List<Integer> resultList = new ArrayList<>();
-        Map<Integer, Integer> map = new HashMap<>();
-        for(List<Integer> query : queries){
-            if(query.get(0) == 1){
-                map.compute(query.get(1), (k,v) -> v == null ? 1 : v+1);
-            }else if(query.get(0) == 2){
-                map.compute(query.get(1), (k,v) -> v == null ? 0 : v-1);
-            }else if(query.get(0) == 3){
-                Set<Integer> set = new HashSet<>();
-                set.addAll(map.values());
-                if(set.contains(query.get(1))){
-                    resultList.add(1);
-                }else{
-                    resultList.add(0);
-                }
-            }
-        }
-        return resultList;
-    }*/
-
-    /*static List<Integer> freqQuery(List<int[]> queries) {
-        List<Integer> resultList = new ArrayList<>();
-        Map<Integer, Integer> countMap = new HashMap<>();
-        Map<Integer, Set<Integer>> freqMap = new HashMap<>();
-        for(int[] query : queries){
-            int opNum = query[0];
-            int valNum = query[1];
-            if(opNum == 1){
-                if(!countMap.containsKey(valNum)){
-                    countMap.put(valNum, 1);
-                    freqMap.computeIfAbsent(countMap.get(valNum), k -> new HashSet<>()).add(valNum);
-                }else {
-                    if(freqMap.get(countMap.get(valNum)) != null && freqMap.get(countMap.get(valNum)).contains(valNum)){
-                        freqMap.get(countMap.get(valNum)).remove(valNum);
-                    }
-                    countMap.put(valNum, countMap.get(valNum) + 1);
-                    freqMap.computeIfAbsent(countMap.get(valNum), k -> new HashSet<>()).add(valNum);
-                }
-            }else if(opNum == 2){
-                if(freqMap.get(countMap.get(valNum)) != null && freqMap.get(countMap.get(valNum)).contains(valNum)){
-                    freqMap.get(countMap.get(valNum)).remove(valNum);
-                }
-                countMap.computeIfPresent(valNum, (k,v) -> v - 1);
-            }else if(opNum == 3){
-                if(freqMap.get(valNum) != null && freqMap.get(valNum).size() > 0){
-                    resultList.add(1);
-                }else {
-                    resultList.add(0);
-                }
-                //countMap.clear();
-                //freqMap.clear();
-            }
-        }
-        return resultList;
-    }*/
 
     static List<Integer> freqQuery(List<int[]> queries) {
         List<Integer> resultList = new ArrayList<>();
