@@ -38,7 +38,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 //        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-        String s = null + "test";
+        System.out.println("TEST "+ (0-(-3)));
+        /*String s = null + "test";
         System.out.println(s);
         int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -54,7 +55,7 @@ public class Main {
         }
 
         int result = sockMerchant(n, ar);
-        System.out.println(result);
+        System.out.println(result);*/
 
         /*bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
