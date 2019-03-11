@@ -6,8 +6,11 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -29,6 +32,7 @@ public class FraudNotice {
         for(String s : inputStr[1].split(" ")){
             expenditure[i++] = Integer.parseInt(s);
         }
+
         System.out.println(Calendar.getInstance().getTime());
         System.out.println(activityNotifications(expenditure, d));
         System.out.println(Calendar.getInstance().getTime());
@@ -36,6 +40,7 @@ public class FraudNotice {
 
     static int activityNotifications(int[] expenditure, int d) {
         List<Integer> list = new ArrayList<Integer>();
+        Map<Integer, Integer> map = new TreeMap<>();
         int medianVal = 0;
         boolean singleVal = (d % 2 != 0);
         int noticeCount = 0;
@@ -49,10 +54,11 @@ public class FraudNotice {
                 System.out.println(temp[2]);
                 System.out.println(temp[5]);
                 list = new ArrayList(Arrays.stream(temp).boxed().sorted().collect(Collectors.toList()));
-                Set<Integer> set = new TreeSet<>();
-                set.addAll(list);
+                for(int k=0; k<list.size(); k++){
+                    map.putIfAbsent(list.get(k), k);
+                }
                 //System.out.println("Sorting Completed!!");
-                System.out.println(set);
+                System.out.println(map);
             }
             else {
                 //Insert to sorted list
