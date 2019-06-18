@@ -19,7 +19,10 @@ public class LRUCache<K, V> {
             evictLeastUsed();
         }
         KeyValueNode newNode = new KeyValueNode(key, value, null, lastNode);
-        if(lastNode != null) lastNode.setNext(newNode);
+        if(lastNode != null) {
+            lastNode.setNext(newNode);
+            newNode.setPrev(lastNode);
+        }
         lastNode = newNode;
         if(leastUsedNode == null){
             leastUsedNode = lastNode;
@@ -29,8 +32,10 @@ public class LRUCache<K, V> {
 
     public V get(K key) {
         KeyValueNode valueNode = cacheMap.get(key);
-        removeNode(valueNode);
-        shiftToLast(valueNode);
+        if(valueNode != lastNode){
+            removeNode(valueNode);
+            shiftToLast(valueNode);
+        }
         return valueNode != null ? (V)valueNode.getValue() : null;
     }
 
@@ -56,7 +61,6 @@ public class LRUCache<K, V> {
         leastUsedNode = leastUsedNode.getNext();
         leastUsedNode.setPrev(null);
         remove((K)temp.getKey());
-        temp = null;
     }
 
     private void removeNode(KeyValueNode node){
@@ -66,9 +70,9 @@ public class LRUCache<K, V> {
                     node.getPrev().setNext(node.getNext());
                 }else{
                     node.getNext().setPrev(node.getPrev());
-                    leastUsedNode = node.getNext();
-                    node.setNext(null);
                 }
+                leastUsedNode = node.getNext();
+                node.setNext(null);
             }
         }
     }
@@ -83,13 +87,14 @@ public class LRUCache<K, V> {
 
     public static void main(String[] args){
         LRUCache<String, String> lruCache = new LRUCache<>(5);
-        lruCache.put("A", "ABC");
+        /*lruCache.put("A", "ABC");
         lruCache.put("C", "Desk");
         lruCache.put("B", "Chair");
         lruCache.put("D", "Pen");
         lruCache.put("E", "Coffee");
         lruCache.get("A");
         lruCache.put("F", "Tea");
+        lruCache.get("F");*/
         lruCache.printCache();
     }
 
