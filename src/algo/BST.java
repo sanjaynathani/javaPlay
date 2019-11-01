@@ -4,7 +4,7 @@ public class BST<T extends Comparable> {
 
     private TNode<T> root;
 
-    public TNode getRoot(){
+    public TNode<T> getRoot(){
         return root;
     }
 
@@ -43,8 +43,10 @@ public class BST<T extends Comparable> {
                 root = null;
             }else if(root.getLeft() == null && root.getRight() != null){
                 root = root.getRight();
+                root.setRight(null);
             }else if(root.getRight() == null && root.getLeft() != null){
                 root = root.getLeft();
+                root.setLeft(null);
             }else {
                 TNode<T> replacingNode = getMinNode(root.getRight());
                 root.setKey(replacingNode.getKey());
@@ -70,14 +72,17 @@ public class BST<T extends Comparable> {
     public static void main(String[] args) {
         BST<FamilyMale> bst = new BST<>();
 
-        bst.insert(new FamilyMale("Soham", 3));
-        FamilyMale deleted = new FamilyMale("Nameri", 130);
-        bst.insert(deleted);
+        /*bst.insert(new FamilyMale("Soham", 3));
+        bst.insert(new FamilyMale("Nameri", 130));
         bst.insert(new FamilyMale("Dharamshi", 90));
         bst.insert(new FamilyMale("Sanjay", 36));
-        bst.insert(new FamilyMale("Ratanshi", 62));
+        bst.insert(new FamilyMale("Ratanshi", 62));*/
 
-        bst.delete(deleted);
+        bst.insert(new FamilyMale("A", 3));
+        bst.insert(new FamilyMale("B", 2));
+        bst.insert(new FamilyMale("C", 4));
+
+        System.out.println(bst.getRoot().getKey());
         bst.printTree(bst.getRoot());
 
         /*bst.delete(50);
