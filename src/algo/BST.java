@@ -43,10 +43,10 @@ public class BST<T extends Comparable> {
                 root = null;
             }else if(root.getLeft() == null && root.getRight() != null){
                 root = root.getRight();
-                root.setRight(null);
+                //root.setRight(null);
             }else if(root.getRight() == null && root.getLeft() != null){
                 root = root.getLeft();
-                root.setLeft(null);
+                //root.setLeft(null);
             }else {
                 TNode<T> replacingNode = getMinNode(root.getRight());
                 root.setKey(replacingNode.getKey());
@@ -77,10 +77,14 @@ public class BST<T extends Comparable> {
         bst.insert(new FamilyMale("Dharamshi", 90));
         bst.insert(new FamilyMale("Sanjay", 36));
         bst.insert(new FamilyMale("Ratanshi", 62));*/
+        bst.insert(new FamilyMale("E", 6));
+        bst.insert(new FamilyMale("D", 5));
+        FamilyMale key = new FamilyMale("C", 4);
+        bst.insert(key);
 
         bst.insert(new FamilyMale("A", 3));
         bst.insert(new FamilyMale("B", 2));
-        bst.insert(new FamilyMale("C", 4));
+        bst.delete(key);
 
         System.out.println(bst.getRoot().getKey());
         bst.printTree(bst.getRoot());
